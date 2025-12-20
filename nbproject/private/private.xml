@@ -2,6 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/NEW%20DATA/Demo/FashionShop/src/java/dal/ProductCardDAO.java</file>
+            <file>file:/D:/NEW%20DATA/Demo/FashionShop/src/java/controller/home/ForgotPassword.java</file>
+            <file>file:/D:/NEW%20DATA/Demo/FashionShop/web/verify-email.jsp</file>
+            <file>file:/D:/NEW%20DATA/Demo/FashionShop/src/java/dal/PasswordResetDAO.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -61,7 +61,7 @@
           <input type="text" placeholder="Username"  name="username"/>
           <input type="password" placeholder="Password" name="password"/>
           <span class="error">${error}</span>
-          <a href="404">Forgot your password?</a>
+          <a href="forgotpassword">Forgot your password?</a>
           <button>Sign In</button>
         </form>
       </div>

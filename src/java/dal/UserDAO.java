@@ -15,7 +15,8 @@ import java.util.List;
  *
  * @author Leo
  */
-public class UserDAO extends DBContext{
+public class UserDAO extends DBContext {
+
     private static UserDAO instance;
 
     public UserDAO() {
@@ -27,7 +28,7 @@ public class UserDAO extends DBContext{
         }
         return instance;
     }
-    
+
     public User getUserByNameAndPassword(String username, String password) {
         String sql = """
                      SELECT [UserID]
@@ -41,7 +42,7 @@ public class UserDAO extends DBContext{
                            ,[CreatedAt]
                      FROM [FashionShop].[dbo].[Users]
                      WHERE UserName = ? AND Password = ?""";
-        
+
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, username);
@@ -57,10 +58,10 @@ public class UserDAO extends DBContext{
         } catch (SQLException e) {
             System.out.println(e);
         }
-        
+
         return null;
     }
-    
+
     public List<User> getAllUsers() {
         List<User> list = new ArrayList<>();
         String sql = """
@@ -74,7 +75,7 @@ public class UserDAO extends DBContext{
                            ,[Role]
                            ,[CreatedAt]
                      FROM [FashionShop].[dbo].[Users]""";
-        
+
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -90,7 +91,41 @@ public class UserDAO extends DBContext{
         } catch (SQLException e) {
             System.out.println(e);
         }
-        
+
         return list;
+    }
+
+    public User findByEmail(String email) {
+        String sql = "SELECT * FROM Users WHERE Email = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                User u = new User();
+                u.setUserID(rs.getInt("UserID"));
+                u.setUserName(rs.getString("UserName"));
+                u.setPassword(rs.getString("Password"));
+                u.setEmail(rs.getString("Email"));
+                return u;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void updatePassword(int userId, String hashPassword) {
+        String sql = "UPDATE Users SET Password = ? WHERE UserID = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, hashPassword);
+            ps.setInt(2, userId);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
