@@ -4,6 +4,7 @@
  */
 package controller.home;
 
+import Tool.MailUtil;
 import dal.PasswordResetDAO;
 import dal.UserDAO;
 import java.io.IOException;
@@ -60,10 +61,10 @@ public class ForgotPassword extends HttpServlet {
         );
 
         request.setAttribute("email", email);
-        request.getRequestDispatcher("verify-otp.jsp").forward(req, resp);
+        request.getRequestDispatcher("verify-otp.jsp").forward(request, response);
 
         request.setAttribute("msg", "Đã gửi link reset qua email");
-        request.getRequestDispatcher("forgot-password.jsp").forward(req, resp);
+        request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
     }
 
 }
