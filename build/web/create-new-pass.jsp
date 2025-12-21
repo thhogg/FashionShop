@@ -19,7 +19,7 @@
         </button>
 
         <div class="form-container">
-            <form action="reset-password" method="POST" onsubmit="return validatePassword()">
+            <form action="createnewpass" method="POST" onsubmit="return validatePassword()">
                 <h1>Reset Password</h1>
                 <p style="font-size: 13px; color: #777;">Please enter your new password below.</p>
                 

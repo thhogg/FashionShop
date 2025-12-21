@@ -18,11 +18,11 @@
         </button>
 
         <div class="form-container">
-            <form action="verify" method="POST">
+            <form action="verifyotp" method="POST">
                 <h1>Verify Your Email</h1>
                 <p>
                     Please enter the 4-digit code sent to <br>
-                    <strong style="color: #c0392b;">${youremail}</strong>
+                    <strong style="color: #c0392b;">${sessionScope.email}</strong>
                 </p>
 
                 <div class="otp-container">
@@ -31,8 +31,10 @@
                     <input type="number" class="otp-input" maxlength="1" oninput="moveNext(this, 'otp4')" id="otp3" name="code3" required>
                     <input type="number" class="otp-input" maxlength="1" id="otp4" name="code4" required>
                 </div>
-
-                <div>
+                <div> 
+                    <h5>${error}</h5>
+                </div>           
+                <div>                  
                     <span>Didn't receive the code?</span>
                     <a href="resend-code" style="color:#c0392b;">Resend code</a>
                 </div>

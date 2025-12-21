@@ -18,13 +18,13 @@
         </button>
 
         <div class="form-container">
-            <form action="#">
+            <form action="forgotpassword" method="post">
                 <h1>Forgot Password</h1>
  
                 <span>Please Enter Your Email Address To Receive a Verification Code</span>
                 
                 <div class="input-group">
-                    <input type="email" placeholder="Email Address" required />
+                    <input type="email" name="email" placeholder="Email Address" required />
                 </div>             
                 <button type="submit" class="submit-btn">Send Code</button>
                 

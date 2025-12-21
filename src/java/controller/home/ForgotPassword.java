@@ -12,6 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.util.Random;
 import model.entity.User;
@@ -50,7 +51,7 @@ public class ForgotPassword extends HttpServlet {
         }
 
         String token = String.valueOf(1000 + new Random().nextInt(9000));
-        LocalDateTime expiry = LocalDateTime.now().plusMinutes(20);
+        LocalDateTime expiry = LocalDateTime.now().plusMinutes(5);
 
         passResetDao.saveToken(user.getUserID(), token, expiry);
 
@@ -60,11 +61,10 @@ public class ForgotPassword extends HttpServlet {
             "<h3>Mã OTP của bạn</h3><h1>" + token + "</h1><p>Hết hạn sau 5 phút</p>"
         );
 
-        request.setAttribute("email", email);
+        HttpSession session = request.getSession();
+        session.setAttribute("RESET_USER_ID", user.getUserID());
+        session.setAttribute("email", email);
         request.getRequestDispatcher("verify-otp.jsp").forward(request, response);
-
-        request.setAttribute("msg", "Đã gửi link reset qua email");
-        request.getRequestDispatcher("forgot-password.jsp").forward(request, response);
     }
 
 }

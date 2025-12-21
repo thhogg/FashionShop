@@ -56,6 +56,14 @@
         <servlet-name>ForgotPassword</servlet-name>
         <servlet-class>controller.home.ForgotPassword</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>VerifyOtp</servlet-name>
+        <servlet-class>controller.home.VerifyOtp</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateNewPassword</servlet-name>
+        <servlet-class>controller.home.CreateNewPassword</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Shop</servlet-name>
         <url-pattern>/shop</url-pattern>
@@ -115,5 +123,13 @@
     <servlet-mapping>
         <servlet-name>ForgotPassword</servlet-name>
         <url-pattern>/forgotpassword</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerifyOtp</servlet-name>
+        <url-pattern>/verifyotp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateNewPassword</servlet-name>
+        <url-pattern>/createnewpass</url-pattern>
     </servlet-mapping>
 </web-app>

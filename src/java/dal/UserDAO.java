@@ -116,11 +116,11 @@ public class UserDAO extends DBContext {
         return null;
     }
 
-    public void updatePassword(int userId, String hashPassword) {
+    public void updatePassword(int userId, String password) {
         String sql = "UPDATE Users SET Password = ? WHERE UserID = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, hashPassword);
+            ps.setString(1, password);
             ps.setInt(2, userId);
             ps.executeUpdate();
 

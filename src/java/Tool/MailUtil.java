@@ -9,20 +9,17 @@ package Tool;
  * @author Leo
  */
 
+import jakarta.mail.*;
+import jakarta.mail.internet.*;
 import java.io.InputStream;
 import java.util.Properties;
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 
 public class MailUtil {
 
     private static Properties mailProps = new Properties();
 
     static {
-        try (InputStream is = MailUtil.class
-                .getClassLoader()
-                .getResourceAsStream("mail.properties")) {
+        try (InputStream is = MailUtil.class.getResourceAsStream("/mail.properties")) {
 
             mailProps.load(is);
 
@@ -45,6 +42,7 @@ public class MailUtil {
 
         Session session = Session.getInstance(props,
                 new Authenticator() {
+                    @Override
                     protected PasswordAuthentication getPasswordAuthentication() {
                         return new PasswordAuthentication(username, password);
                     }

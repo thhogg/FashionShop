@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/NEW%20DATA/Demo/FashionShop/web/WEB-INF/mail.properties</file>
-            <file>file:/D:/NEW%20DATA/Demo/FashionShop/src/java/controller/home/ForgotPassword.java</file>
-            <file>file:/D:/NEW%20DATA/Demo/FashionShop/src/java/Tool/MailUtil.java</file>
-            <file>file:/D:/NEW%20DATA/Demo/FashionShop/web/verify-email.jsp</file>
+            <file>file:/D:/NEW%20DATA/Demo/FashionShop/web/verify-otp.jsp</file>
+            <file>file:/D:/NEW%20DATA/Demo/FashionShop/web/create-new-pass.jsp</file>
+            <file>file:/D:/NEW%20DATA/Demo/FashionShop/src/java/controller/home/CreateNewPassword.java</file>
+            <file>file:/D:/NEW%20DATA/Demo/FashionShop/src/java/controller/home/VerifyOtp.java</file>
             <file>file:/D:/NEW%20DATA/Demo/FashionShop/src/java/dal/PasswordResetDAO.java</file>
         </group>
     </open-files>

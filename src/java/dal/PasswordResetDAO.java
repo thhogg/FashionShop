@@ -16,7 +16,7 @@ import model.entity.PasswordResetToken;
  * @author Leo
  */
 public class PasswordResetDAO extends DBContext {
-    
+
     private static PasswordResetDAO instance;
 
     public PasswordResetDAO() {
@@ -28,8 +28,7 @@ public class PasswordResetDAO extends DBContext {
         }
         return instance;
     }
-    
-    
+
     public void saveToken(int userId, String token, LocalDateTime expiry) {
         String sql = """
             INSERT INTO PasswordResetToken(UserID, Token, Expiry)
@@ -48,27 +47,6 @@ public class PasswordResetDAO extends DBContext {
         }
     }
 
-    public PasswordResetToken findByToken(String token) {
-        String sql = "SELECT * FROM PasswordResetToken WHERE Token = ?";
-
-        try {
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, token);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                PasswordResetToken t = new PasswordResetToken();
-                t.setUserID(rs.getInt("UserID"));
-                t.setToken(rs.getString("Token"));
-                t.setExpiry(rs.getTimestamp("Expiry").toLocalDateTime());
-                return t;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     public void deleteToken(String token) {
         String sql = "DELETE FROM PasswordResetToken WHERE Token = ?";
         try {
@@ -78,5 +56,29 @@ public class PasswordResetDAO extends DBContext {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public PasswordResetToken findValidOTP(Integer userId, String otp) {
+        String sql = "SELECT * FROM PasswordResetToken WHERE UserID = ? and Token = ? and Expiry > ?";
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, userId);
+            ps.setString(2, otp);
+            ps.setTimestamp(3, Timestamp.valueOf(LocalDateTime.now()));
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                PasswordResetToken t = new PasswordResetToken();
+                t.setTokenID(rs.getInt("TokenID"));
+                t.setUserID(rs.getInt("UserID"));
+                t.setToken(rs.getString("Token"));
+                t.setExpiry(rs.getTimestamp("Expiry").toLocalDateTime());
+                return t;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
