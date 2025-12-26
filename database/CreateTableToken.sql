@@ -1,0 +1,7 @@
+CREATE TABLE PasswordResetToken (
+    TokenID INT IDENTITY PRIMARY KEY,
+    UserID INT NOT NULL,
+    Token NVARCHAR(255) NOT NULL,
+    Expiry DATETIME NOT NULL,
+    FOREIGN KEY (UserID) REFERENCES Users(UserID)
+);
